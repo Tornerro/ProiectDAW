@@ -1,0 +1,128 @@
+﻿@model Build1.Models.Proiect
+
+@{
+    ViewBag.Title = "Show";
+}
+<br />
+<a href="/Proiects/Index">Inapoi la proiecte</a>
+<br />
+
+<h1>@ViewBag.Message</h1>
+
+
+<div class="panel panel-default">
+
+    <h1><div class="panel-heading">@Model.NumeProiect</div></h1>
+
+    <span class="label label-success">@Model.DataProiect</span>
+
+
+    <h3>Organizator: @Model.User.UserName</h3>
+
+
+    <div>
+        Participanti:
+
+        <ul>
+            @foreach (var participant in Model.Contracte)
+            {
+                <li>@participant.User.UserName</li>
+
+                if (((ViewBag.Org == ViewBag.IdCurent) || User.IsInRole("Admin")) && (participant.IdUser !=ViewBag.Org ))
+                {
+                    using (Html.BeginForm(actionName: "DeleteContract", controllerName: "Proiects", method: FormMethod.Post,
+                                    routeValues: new { id = participant.IdContract }))
+                    {
+                        @Html.HttpMethodOverride(HttpVerbs.Delete)
+                        <button type="submit">Elimina</button>
+                    }
+                }
+            }
+        </ul>
+
+        @if (ViewBag.Org == ViewBag.IdCurent)
+         {
+            <a class="btn btn-primary" href="/Proiects/AddUser/@Model.IdProiect">Adauga Participant</a>
+         }
+
+    </div>
+
+
+
+    @if ((ViewBag.Org == ViewBag.IdCurent) || User.IsInRole("Admin"))
+    {
+        <div class="panel-footer">
+            <a class="btn btn-success pull-left" href="/Proiects/Edit/@Model.IdProiect">Modifica proiectul</a>
+
+            @using (Html.BeginForm(actionName: "Delete", controllerName: "Proiects", method: FormMethod.Post,
+                                    routeValues: new { id = Model.IdProiect }))
+            {
+                @Html.HttpMethodOverride(HttpVerbs.Delete)
+                <button class="btn btn-danger pull-right" type="submit">Sterge proiectul</button>
+            }
+
+            <div class="clearfix"></div>
+        </div>
+    }
+</div>
+
+<div class="panel panel-default">
+
+    <h2><div class="panel-heading">Taskuri</div></h2>
+
+    @foreach (var task in Model.Tasks)
+    {
+        <hr />
+        <div class="container">
+            <div>
+                <ul><h3>@task.NumeTask</h3></ul>
+
+                <div>
+                    Membri repartizati:
+
+                    <ul>
+                        @foreach (var rep in task.Rapartizari)
+                        {
+                            <li>@rep.User.UserName</li>
+
+                            if (((ViewBag.Org == ViewBag.IdCurent) || User.IsInRole("Admin")))
+                            {
+                                using (Html.BeginForm(actionName: "DeleteRepartizare", controllerName: "Tasks", method: FormMethod.Post,
+                                                routeValues: new { id = rep.IdRepartizare }))
+                                {
+                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                    <button type="submit">Elimina</button>
+                                }
+                            }
+                        }
+                    </ul>
+
+                    @if (ViewBag.Org == ViewBag.IdCurent)
+                    {
+                        <a class="btn btn-primary" href="/Tasks/AddRepartizare/@task.IdTask">Repartizeaza un nou membru la acest task</a>
+                    }
+
+                </div>
+
+                <p>Status: @task.Status</p>
+                <p>Data inceput: @task.DataTask</p>
+                @if (task.Status == "Terminat")
+                {
+                    <p>Data sfarsit: @task.DataSfarsitTask</p>
+                }
+            </div>
+
+            <a class="btn btn-primary" href="/Tasks/Show/@task.IdTask">Vezi informatii despre task</a>
+
+            <div class="clearfix"></div>
+        </div>
+
+    }
+    <br />
+    @if ((ViewBag.Org == ViewBag.IdCurent) || User.IsInRole("Admin"))
+     {
+        <div class="panel-footer">
+            <a class="btn btn-primary" href="/Tasks/New/@Model.IdProiect">Adauga Task</a>
+        </div>
+     }
+</div>

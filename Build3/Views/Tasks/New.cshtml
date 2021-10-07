@@ -1,0 +1,30 @@
+﻿@model Build1.Models.Task
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Adaugare task</h2>
+<br />
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Tasks"))
+{
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    <input type="hidden" id="IdProiect" name="IdProiect" value=@ViewBag.IdP>
+
+    <input type="hidden" id="Status" name="Status" value="Neterminat">
+
+    @Html.Label("NumeTask", "Nume Task")
+    <br />
+    @Html.TextBox("NumeTask", null, new { @class = "form-control" })
+    @Html.ValidationMessage("NumeTask", "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("DescriereTask", "Descriere Task")
+    <br />
+    @Html.TextArea("DescriereTask", null, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success" type="submit">Adauga task</button>
+}

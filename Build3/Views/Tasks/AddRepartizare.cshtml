@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "AddRepartizare";
+}
+
+<h2>AddRepartizare</h2>
+
+@using (Html.BeginForm(actionName: "AddRepartizare", controllerName: "Tasks"))
+{
+
+    <input type="hidden" id="IdTask" name="IdTask" value=@ViewBag.IdT>
+
+    <i class="glyphicon glyphicon-th-list"></i>
+    <label>Selectati membrul</label>
+    @Html.DropDownList("IdUser", new SelectList(ViewBag.useri, "Value", "Text"), null, new { @class = "form-control" })
+
+    <br />
+
+    <button class="btn btn-sm btn-success" type="submit">Repartizeaza membru</button>
+
+
+}

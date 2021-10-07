@@ -1,0 +1,23 @@
+﻿@model Build1.Models.Proiect
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Adaugare proiect</h2>
+<br />
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Proiects"))
+{
+
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @Html.Label("NumeProiect", "Nume Proiect")
+    <br />
+    @Html.TextBox("NumeProiect", null, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.NumeProiect, null, new { @class = "text-danger" })
+
+    <br />
+    <button type="submit">Adauga proiect</button>
+}

@@ -1,0 +1,21 @@
+﻿@model Build1.Models.Comment
+
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editare comentariu</h2>
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Comments"))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+
+    @Html.Label("ContinutComment", "Continut Comentariu")
+    <br />
+    @Html.TextArea("ContinutComment", null, new { @class = "form-control" })
+    <br />
+    @Html.ValidationMessage("ContinutComment", null, new { @class = "text-danger" })
+    <br />
+    <button class="btn btn-success" type="submit">Editeaza comentariul</button>
+}

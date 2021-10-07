@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "AddUser";
+}
+
+<h2>AddUser</h2>
+
+@using (Html.BeginForm(actionName: "AddUser", controllerName: "Proiects"))
+{
+
+    <input type="hidden" id="IdProiect" name="IdProiect" value=@ViewBag.IdP>
+
+    <i class="glyphicon glyphicon-th-list"></i>
+    <label>Selectati utilizatorul</label>
+    @Html.DropDownList("IdUser", new SelectList(ViewBag.useri, "Value", "Text"), null, new { @class = "form-control" })
+
+    <br />
+
+    <button class="btn btn-sm btn-success" type="submit">Adauga membru</button>
+
+
+}

@@ -1,0 +1,20 @@
+﻿@model Build1.Models.Proiect
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<br />
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Proiects"))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.Label("NumeProiect", "Nume proiect")
+    <br />
+    @Html.EditorFor(m => m.NumeProiect, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessage("NumeProiect", null, new { @class = "text-danger" })
+    <br />
+    <button class="btn btn-success" type="submit">Modifica proiectul</button>
+}
+
+
