@@ -3,7 +3,7 @@ Site de tip Task Management(ex. Trello) facut cu ASP.NET folosind EntityFramewor
 
 Features:
 
-  -Tipuri de utilizatori: Admin, Organizator, Membru si Utilizator neinregistrat.
+  -Tipuri de utilizatori: Admin, Organizator, Membru si Utilizator neinregistrat/nelogat.
   
   -Adminul are acces la toate informatiile si poate edita/sterge conturi, proiecte, taskuri si comentarii.
   
