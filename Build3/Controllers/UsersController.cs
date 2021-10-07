@@ -14,6 +14,7 @@ namespace Build3.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Users
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var users = from user in db.Users
@@ -23,6 +24,7 @@ namespace Build3.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Show(string id)
         {
             ApplicationUser user = db.Users.Find(id);
@@ -40,7 +42,7 @@ namespace Build3.Controllers
             return View(user);
         }
 
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(string id)
         {
             ApplicationUser user = db.Users.Find(id);
