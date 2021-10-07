@@ -14,3 +14,5 @@ Features:
   -Un organizator poate sterge proiectele proprii si poate edita/sterge orice informatii din proiectele sale.
   
   -Utilizatorii neinregistrati nu au acces decat la pagina principala(Front-End is WIP).
+
+SCURT DEMO: https://www.youtube.com/watch?v=15YKFFXD2AU
