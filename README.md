@@ -1,4 +1,4 @@
-# ProiectDAW
+# ProiectDAW - Dezvoltarea aplicatiilor Web
 Site de tip Task Management(ex. Trello) facut cu ASP.NET folosind EntityFramework pe arhitectura MVC.
 
 Features:
